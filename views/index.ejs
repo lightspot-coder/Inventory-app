@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+  </head>
+  <body>
+    <h2>Games inventory app</h2>
+    <h3>Select a category :</h3>
+    <ul>
+        <% categories.map((category) => { %>
+      <li><a href="/category?genre=<%=category.genre%>"><%=category.genre%></a></li>
+      <% })%>
+      <li><a href="/allgames">All games</a></li>
+    </ul>
+    <br>
+    <br>
+    <a href="/additem">Add a new item to the inventory</a>
+  </body>
+</html>

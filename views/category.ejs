@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h2><%= title %> games </h2>
+    <ul>
+    <% items.map((item) =>{  %>
+        <li><a href="/item?title=<%=item.title%>" ><%= item.title %></a></li>
+    <% })%>
+    </ul>
+    <a href="/">Back to the home ...</a>
+</body>
+</html>
