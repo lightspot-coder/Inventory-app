@@ -11,6 +11,9 @@
     <p><b>Title : </b> <%= item.title %></p>
     <p><b>Genre : </b> <%= item.genre %></p>
     <p><b>Developer : </b> <%= item.developer %></p>
+    <br />
+    <a href="/updateitem?id=<%=item.id%>">Update info</a>
+    <a href="/deleteitem?id=<%=item.id%>">Delete item</a>
     <a href="/">Back to home ...</a>
   </body>
 </html>

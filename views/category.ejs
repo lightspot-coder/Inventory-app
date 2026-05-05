@@ -9,9 +9,10 @@
     <h2><%= title %> games </h2>
     <ul>
     <% items.map((item) =>{  %>
-        <li><a href="/item?title=<%=item.title%>" ><%= item.title %></a></li>
+        <li><a href="/item?id=<%=item.id%>" ><%= item.title %></a></li>
     <% })%>
     </ul>
+    <a href="/deletecategory?genre=<%=title%>">Delete category</a>
     <a href="/">Back to the home ...</a>
 </body>
 </html>

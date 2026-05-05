@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h2>Update Game Info form</h2>
+    <form method="POST" action="/updateitem">
+      <label for="title">Enter title : </label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        value="<%=oldItemInfo.title%>"
+        required
+      />
+      <label for="developer">Enter developer name : </label>
+      <input
+        type="text"
+        id="developer"
+        name="developer"
+        value="<%=oldItemInfo.developer%>"
+        required
+      />
+      <p>Choose the genre:</p>
+      <input type="radio" id="genre 1" name="genre" />
+      <label for="genre 1">Shooter</label><br />
+      <input type="radio" id="genre 2" name="genre" value="Rol" />
+      <label for="genre 2">Rol</label><br />
+      <input type="radio" id="genre 3" name="genre" value="Strategy" />
+      <label for="genre 3">Strategy</label><br />
+      <input type="radio" id="genre 4" name="genre" value="Adventure" />
+      <label for="genre 4">Adventure</label><br />
+      <input type="radio" id="genre 5" name="genre" value="Sports" />
+      <label for="genre 5">Sports</label><br />
+      <input type="radio" id="genre 6" name="genre" value="Racing" />
+      <label for="genre 6">Racing</label><br />
+      <button type="submit">Submit</button>
+    </form>
+    <a href="/">Back to home ...</a>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 const pool = require("./pool");
 
-async function getItemByTitle(title) {
+async function getItemById(id) {
   const { rows } = await pool.query(
-    "SELECT games.id,title,genre,developers.name AS developer FROM games JOIN developers ON developers.id = games.developer_id WHERE games.title = $1",
-    [title],
+    "SELECT games.id,title,genre,developers.name AS developer FROM games JOIN developers ON developers.id = games.developer_id WHERE games.id = $1",
+    [id],
   );
   return rows[0];
 }
@@ -35,21 +35,17 @@ async function getDeveloperId(developer) {
   return rows[0];
 }
 async function addItem(itemInfo) {
-  console.log(itemInfo);
   console.log(typeof itemInfo.developer);
   await pool.query(
     "INSERT INTO games (developer_id,title,genre) VALUES ($1,$2,$3)",
     [itemInfo.developer, itemInfo.title, itemInfo.genre],
   );
 }
-
-/*
-async function getAllItemsByGenre(genre) {
-  await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
+async function deleteItemById(id) {
+  await pool.query("DELETE FROM games WHERE id=$1", [id]);
 }
-
-async function deleteTable() {
-  await pool.query("DELETE FROM usernames");
+async function deleteItemsByGenre(genre) {
+  await pool.query("DELETE FROM games WHERE genre=$1", [genre]);
 }
 
 async function getUserNamesByFilter(filter) {
@@ -61,13 +57,15 @@ async function getUserNamesByFilter(filter) {
   console.log(rows);
   return rows;
 }
-*/
+
 module.exports = {
-  getItemByTitle,
+  getItemById,
   getAllItemsByGenre,
   getCategories,
   getAllInventory,
   addDeveloper,
   getDeveloperId,
   addItem,
+  deleteItemById,
+  deleteItemsByGenre,
 };

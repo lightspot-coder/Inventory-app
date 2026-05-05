@@ -12,6 +12,10 @@ app.get("/item", indexRouter);
 app.get("/allgames", indexRouter);
 app.get("/additem", indexRouter);
 app.post("/additem", indexRouter);
+app.get("/deleteitem", indexRouter);
+app.get("/deletecategory", indexRouter);
+app.get("/updateitem", indexRouter);
+app.post("/updateitem", indexRouter);
 
 app.listen(3000, () => {
   console.log("Listening on the port 3000...");

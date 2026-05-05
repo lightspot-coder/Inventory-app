@@ -1,7 +1,7 @@
 const db = require("../db/queries");
 
 async function getItem(req, res) {
-  const item = await db.getItemByTitle(req.query.title);
+  const item = await db.getItemById(req.query.id);
   res.render("item", {
     title: "game info",
     item: item,
@@ -37,9 +37,12 @@ function addItem_GET(req, res) {
 }
 
 async function addItem_POST(req, res) {
-  console.log(req.body.genre);
-  await db.addDeveloper(req.body.developer);
-  const developerId = await db.getDeveloperId(req.body.developer);
+  let developerId = await db.getDeveloperId(req.body.developer);
+  if (developerId == undefined) {
+    console.log("This developers doesn't exist, create new one");
+    await db.addDeveloper(req.body.developer);
+    developerId = await db.getDeveloperId(req.body.developer);
+  }
   await db.addItem({
     developer: developerId.id,
     title: req.body.title,
@@ -47,6 +50,24 @@ async function addItem_POST(req, res) {
   });
   res.redirect("/");
   console.log("add new item successfull");
+}
+async function getDeleteItem(req, res) {
+  await db.deleteItemById(req.query.id);
+  res.redirect("/");
+}
+async function getDeleteCategory(req, res) {
+  await db.deleteItemsByGenre(req.query.genre);
+  res.redirect("/");
+}
+
+async function getUpdateItem(req, res) {
+  const oldItemInfo = await db.getItemById(req.query.id);
+  await db.deleteItemById(req.query.id);
+  console.log(oldItemInfo);
+  res.render("updateitem", {
+    title: "Update info",
+    oldItemInfo: oldItemInfo,
+  });
 }
 
 module.exports = {
@@ -56,4 +77,7 @@ module.exports = {
   getAllInventory,
   addItem_GET,
   addItem_POST,
+  getDeleteItem,
+  getDeleteCategory,
+  getUpdateItem,
 };
