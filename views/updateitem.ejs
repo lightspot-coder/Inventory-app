@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h2>Update Game Info form</h2>
+    <%- include("partials/errors.ejs") %>
     <form method="POST" action="/updateitem">
       <label for="title">Enter title : </label>
       <input
@@ -25,6 +27,7 @@
         required
       />
       <p>Choose the genre:</p>
+      <input type="hidden" name="id" value="<%=oldItemInfo.id%>" />
       <input type="radio" id="genre 1" name="genre" />
       <label for="genre 1">Shooter</label><br />
       <input type="radio" id="genre 2" name="genre" value="Rol" />

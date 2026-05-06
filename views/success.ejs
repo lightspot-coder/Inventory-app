@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Error page</title>
+    <title><%=title%></title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <h3>Ups, something goes wrong, click <a href="/">here</a> to go back</h3>
+    <h3>
+      Success, <%=item.title%> developed by <%=item.developer%> with genre
+      <%=item.genre%> was <%=action%>
+    </h3>
+    <a href="/">Go back to the home page ...</a>
   </body>
 </html>

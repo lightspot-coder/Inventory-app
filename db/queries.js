@@ -35,7 +35,6 @@ async function getDeveloperId(developer) {
   return rows[0];
 }
 async function addItem(itemInfo) {
-  console.log(typeof itemInfo.developer);
   await pool.query(
     "INSERT INTO games (developer_id,title,genre) VALUES ($1,$2,$3)",
     [itemInfo.developer, itemInfo.title, itemInfo.genre],
@@ -47,7 +46,7 @@ async function deleteItemById(id) {
 async function deleteItemsByGenre(genre) {
   await pool.query("DELETE FROM games WHERE genre=$1", [genre]);
 }
-
+/*
 async function getUserNamesByFilter(filter) {
   //console.log("filter by " + filter);
   const { rows } = await pool.query(
@@ -56,6 +55,18 @@ async function getUserNamesByFilter(filter) {
   );
   console.log(rows);
   return rows;
+}
+  */
+async function updateItem({ id, title, genre, developer }) {
+  console.log(typeof id);
+  const { rows } = await pool.query("SELECT id FROM developers WHERE name=$1", [
+    developer,
+  ]);
+  console.log(rows[0]);
+  await pool.query(
+    "UPDATE games SET title=$1, genre=$2, developer_id=$3 WHERE id=$4",
+    [title, genre, rows[0].id, id],
+  );
 }
 
 module.exports = {
@@ -68,4 +79,5 @@ module.exports = {
   addItem,
   deleteItemById,
   deleteItemsByGenre,
+  updateItem,
 };
