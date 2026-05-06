@@ -44,7 +44,7 @@ async function main() {
   const client = new Client({
     connectionString:
       /*"postgresql://odinstudent:jp1843@localhost:5432/top_users",*/
-      `postgresql://${env.USER}:${env.PASSWORD}@${env.HOST}:${env.PORT}/${env.DATABASE}`,
+      `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`,
   });
   await client.connect();
   await client.query(SQL);
