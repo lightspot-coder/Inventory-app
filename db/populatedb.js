@@ -38,7 +38,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   console.log(
-    `postgresql://${env.USER}:${env.PASSWORD}@${env.HOST}:${env.PORT}/${env.DATABASE}`,
+    `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`,
   );
   console.log("postgresql://odinstudent:jp1843@localhost:5432/top_users");
   const client = new Client({
